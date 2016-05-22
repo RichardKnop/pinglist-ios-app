@@ -101,40 +101,18 @@
 }
 
 - (void)initGraph {
-    if ([Global sharedInstance].credential.isExpired) {
-        [Global refreshAccessToken:^(NSString *accessTok, NSString *refreshTok) {
-            [self initGraph];
-        } failure:^(NSError *error) {
-            NSLog(@"%@", error.description);
-        }];
-    }
+    // Setup the graph
+    [self setupGraph];
     
-    else {
-        NSString *requestURL    =   [NSString stringWithFormat:@"%@/v1/alarms/%d/response-times?limit=100", endpointURL, self.alarm.ID];
-        [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeClear];
-        [[Global afManager] GET:requestURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [SVProgressHUD dismiss];
-            NSString *symbol = @"%";
-            self.lblUptime.text     =   [NSString stringWithFormat:@"uptime: %.2f%@",[responseObject[@"uptime"] floatValue], symbol];
-            self.lblAvgTime.text    =   [NSString stringWithFormat:@"%.0f ms", [responseObject[@"average"] floatValue] / 1000000];
-            self.lblDrops.text      =   [responseObject[@"incident_type_counts"][@"timeout"] stringValue];
-            self.lblSlows.text      =   [responseObject[@"incident_type_counts"][@"slow"] stringValue];
-            
-            //Loading graphc data
-            NSArray *array  =   responseObject[@"_embedded"][@"response_times"];
-            for (int i = 0; i < array.count; i ++) {
-                [self.arrayOfValues addObject:@([array[i][@"value"] longLongValue] / 1000000)];
-                [self.arrayOfDates addObject:[self getDate:array[i][@"timestamp"]]];
-            }
-            
-            //Drawing Graph
-            [self setupGraph];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSDictionary    *respone  =   [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:kNilOptions error:&error];
-            [SVProgressHUD showErrorWithStatus:respone[@"error"] maskType:SVProgressHUDMaskTypeClear];
-        }];
-    }
+    NSString *requestURL = [NSString stringWithFormat:@"%@/v1/alarms/%d/response-times?limit=100&order_by=timestamp desc", endpointURL, self.alarm.ID];
+    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeClear];
+    [self loadMetricsData:requestURL];
+    
+    [UIView animateWithDuration:.3f animations:^{
+        self.btnSelectionbar.center = CGPointMake(self.btnAllTime.center.x, self.btnSelectionbar.center.y);
+    } completion:^(BOOL finished) {
+        [self.btnAllTime setTitleColor:GREEN_COLOR forState:UIControlStateNormal];
+    }];
 }
 
 - (void)refresh {
@@ -182,8 +160,6 @@
     
     // Show the y axis values with this format string
     self.myGraph.formatStringForValues = @"%.1f";
-    
-    [self.myGraph reloadGraph];
 }
 
 - (void)resetTabSelection {
@@ -264,6 +240,13 @@
         
         [[Global afManager] GET:encodedURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
+            
+            NSString *symbol = @"%";
+            self.lblUptime.text     =   [NSString stringWithFormat:@"uptime: %.2f%@",[responseObject[@"uptime"] floatValue], symbol];
+            self.lblAvgTime.text    =   [NSString stringWithFormat:@"%.0f ms", [responseObject[@"average"] floatValue] / 1000000];
+            self.lblDrops.text      =   [responseObject[@"incident_type_counts"][@"timeout"] stringValue];
+            self.lblSlows.text      =   [responseObject[@"incident_type_counts"][@"slow"] stringValue];
+            
             NSArray *array  =   responseObject[@"_embedded"][@"response_times"];
             
             if (array.count == 0 || array.count == 1) {
@@ -277,8 +260,8 @@
             
             [self.myGraph reloadGraph];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSDictionary    *respone  =   [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:kNilOptions error:&error];
-            [SVProgressHUD showErrorWithStatus:respone[@"error"] maskType:SVProgressHUDMaskTypeClear];
+            NSDictionary    *response  =   [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:kNilOptions error:&error];
+            [SVProgressHUD showErrorWithStatus:response[@"error"] maskType:SVProgressHUDMaskTypeClear];
         }];
     }
 }

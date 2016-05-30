@@ -55,20 +55,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.btnTrend.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:14.0f];
-    self.btnIncident.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:14.0f];
+    self.btnTrend.titleLabel.font       =   [UIFont fontWithName:@"Lato-Regular" size:14.0f];
+    self.btnIncident.titleLabel.font    =   [UIFont fontWithName:@"Lato-Regular" size:14.0f];
     
     self.btnIncident1Hour.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
-    self.btnIncident24Hour.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
+    self.btnIncident24Hour.titleLabel.font  =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.btnIncident30Day.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
-    self.btnIncident7Day.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
-    self.btnIncidentAllTime.titleLabel.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
+    self.btnIncident7Day.titleLabel.font    =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
+    self.btnIncidentAllTime.titleLabel.font =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     
     self.lblType.font           =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.lblHttpCode.font       =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.lblOccurredAt.font     =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.lblResolvedAt.font     =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
-    self.lblMessage.font        =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
+    self.txtViewMessage.font    =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.txtViewResponse.font   =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     
     self.btnAllTime.titleLabel.font     =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
@@ -82,6 +82,9 @@
     self.lblSlows.font      =   [UIFont fontWithName:@"Lato-Regular" size:14.0f];
     self.lblUptime.font     =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
     self.lblUrl.font        =   [UIFont fontWithName:@"Lato-Regular" size:13.0f];
+    
+    self.txtViewMessage.textContainerInset = UIEdgeInsetsMake(0, -self.txtViewMessage.textContainer.lineFragmentPadding, 0, -self.txtViewMessage.textContainer.lineFragmentPadding);
+    self.txtViewResponse.textContainerInset = UIEdgeInsetsMake(0, -self.txtViewResponse.textContainer.lineFragmentPadding, 0, -self.txtViewResponse.textContainer.lineFragmentPadding);
     
     self.lblUrl.text        =   self.alarm.endpoint_url;
     self.arrayOfValues      =   [[NSMutableArray alloc] init];
@@ -558,7 +561,7 @@
     self.lblHttpCode.text       =   [NSString stringWithFormat:@"%d", incident.http_code];
     self.lblOccurredAt.text     =   [self getConvertedStringForIncidentDetails:incident.created_at];
     self.lblResolvedAt.text     =   [self getConvertedStringForIncidentDetails:incident.resolved_at];
-    self.lblMessage.text        =   incident.error_message;
+    self.txtViewMessage.text    =   incident.error_message;
     self.txtViewResponse.text   =   incident.response;
 }
 

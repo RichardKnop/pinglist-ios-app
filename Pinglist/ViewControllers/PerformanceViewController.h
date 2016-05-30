@@ -62,7 +62,7 @@
 @property (weak, nonatomic) IBOutlet UILabel        *lblHttpCode;
 @property (weak, nonatomic) IBOutlet UILabel        *lblOccurredAt;
 @property (weak, nonatomic) IBOutlet UILabel        *lblResolvedAt;
-@property (weak, nonatomic) IBOutlet UILabel        *lblMessage;
+@property (weak, nonatomic) IBOutlet UITextView     *txtViewMessage;
 @property (weak, nonatomic) IBOutlet UILabel        *lblPerformance;
 @property (weak, nonatomic) IBOutlet UITextView     *txtViewResponse;
 

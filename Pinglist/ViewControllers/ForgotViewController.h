@@ -13,6 +13,6 @@
 - (IBAction)onBack:(id)sender;
 - (IBAction)onSubmit:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UITextField    *txtFieldEmail;
+@property(weak, nonatomic) IBOutlet UITextField *txtFieldEmail;
 
 @end

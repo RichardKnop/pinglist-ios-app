@@ -13,9 +13,9 @@
 - (IBAction)onBack:(id)sender;
 - (IBAction)onChange:(id)sender;
 
-@property                               int         myUserId;
-@property (weak, nonatomic) IBOutlet UITextField    *txtFieldOld;
-@property (weak, nonatomic) IBOutlet UITextField    *txtFieldNew;
-@property (weak, nonatomic) IBOutlet UITextField    *txtFieldConfirm;
+@property int myUserId;
+@property(weak, nonatomic) IBOutlet UITextField *txtFieldOld;
+@property(weak, nonatomic) IBOutlet UITextField *txtFieldNew;
+@property(weak, nonatomic) IBOutlet UITextField *txtFieldConfirm;
 
 @end

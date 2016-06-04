@@ -10,15 +10,15 @@
 
 @interface TeamMember : NSObject
 
-@property                     int            ID;
-@property                     BOOL           confirmed;
-@property (nonatomic, strong) NSString       *email;
-@property (nonatomic, strong) NSString       *firstName;
-@property (nonatomic, strong) NSString       *lastName;
-@property (nonatomic, strong) NSString       *role;
-@property (nonatomic, strong) NSString       *createdAt;
-@property (nonatomic, strong) NSString       *updatedAt;
+@property int ID;
+@property BOOL confirmed;
+@property(nonatomic, strong) NSString *email;
+@property(nonatomic, strong) NSString *firstName;
+@property(nonatomic, strong) NSString *lastName;
+@property(nonatomic, strong) NSString *role;
+@property(nonatomic, strong) NSString *createdAt;
+@property(nonatomic, strong) NSString *updatedAt;
 
-- (id)initWithData :(NSDictionary *)dict;
+- (id)initWithData:(NSDictionary *)dict;
 
 @end

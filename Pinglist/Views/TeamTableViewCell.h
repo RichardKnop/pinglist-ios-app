@@ -10,9 +10,9 @@
 
 @interface TeamTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel    *lblTeamName;
-@property (weak, nonatomic) IBOutlet UILabel    *lblNumber;
-@property (weak, nonatomic) IBOutlet UIButton   *btnEdit;
-@property (weak, nonatomic) IBOutlet UIButton   *btnDelete;
+@property(weak, nonatomic) IBOutlet UILabel *lblTeamName;
+@property(weak, nonatomic) IBOutlet UILabel *lblNumber;
+@property(weak, nonatomic) IBOutlet UIButton *btnEdit;
+@property(weak, nonatomic) IBOutlet UIButton *btnDelete;
 
 @end

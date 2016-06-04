@@ -10,9 +10,9 @@
 
 @interface IncidentTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel    *lblType;
-@property (weak, nonatomic) IBOutlet UILabel    *lblOccurred;
-@property (weak, nonatomic) IBOutlet UILabel    *lblResolvedAt;
-@property (weak, nonatomic) IBOutlet UIButton   *btnView;
+@property(weak, nonatomic) IBOutlet UILabel *lblType;
+@property(weak, nonatomic) IBOutlet UILabel *lblOccurred;
+@property(weak, nonatomic) IBOutlet UILabel *lblResolvedAt;
+@property(weak, nonatomic) IBOutlet UIButton *btnView;
 
 @end

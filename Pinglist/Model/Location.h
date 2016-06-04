@@ -10,9 +10,9 @@
 
 @interface Location : NSObject
 
-@property (nonatomic, strong) NSString    *location_name;
-@property (nonatomic, strong) NSString    *location_id;
+@property(nonatomic, strong) NSString *location_name;
+@property(nonatomic, strong) NSString *location_id;
 
-- (id)initWithData :(NSDictionary *)dict;
+- (id)initWithData:(NSDictionary *)dict;
 
 @end

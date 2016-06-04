@@ -10,7 +10,7 @@
 
 @interface MemberTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel    *lblMember;
-@property (weak, nonatomic) IBOutlet UIButton   *btnDelete;
+@property(weak, nonatomic) IBOutlet UILabel *lblMember;
+@property(weak, nonatomic) IBOutlet UIButton *btnDelete;
 
 @end

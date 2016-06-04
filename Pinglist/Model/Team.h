@@ -10,12 +10,12 @@
 
 @interface Team : NSObject
 
-@property                     int            ID;
-@property (nonatomic, strong) NSString       *name;
-@property (nonatomic, strong) NSString       *createdAt;
-@property (nonatomic, strong) NSString       *updatedAt;
-@property (nonatomic, strong) NSMutableArray *members;
+@property int ID;
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *createdAt;
+@property(nonatomic, strong) NSString *updatedAt;
+@property(nonatomic, strong) NSMutableArray *members;
 
-- (id)initWithData :(NSDictionary *)dict;
+- (id)initWithData:(NSDictionary *)dict;
 
 @end

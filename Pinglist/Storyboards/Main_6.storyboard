@@ -1887,9 +1887,6 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="eix-jj-l3G"/>
-                    <keyCommands>
-                        <keyCommand/>
-                    </keyCommands>
                     <connections>
                         <outlet property="btnActive" destination="jkG-cc-8s7" id="ilC-J1-G6f"/>
                         <outlet property="btnEmail" destination="gAT-Wt-p9P" id="UXf-bf-YI3"/>

@@ -16,6 +16,7 @@
 @property int max_response_time;
 @property BOOL isEmailAlert;
 @property BOOL isPushNotification;
+@property BOOL isSlackAlert;
 @property BOOL isActive;
 @property(nonatomic, strong) NSString *region;
 @property(nonatomic, strong) NSString *state;

@@ -22,6 +22,7 @@
   NSString *url;
   BOOL isEmail;
   BOOL isPushNotification;
+  BOOL isSlack;
   BOOL isActive;
   BOOL isDropDown;
   int httpCode;
@@ -36,6 +37,7 @@
 - (IBAction)onEmail:(id)sender;
 - (IBAction)onActive:(id)sender;
 - (IBAction)onPushNotification:(id)sender;
+- (IBAction)onSlack:(id)sender;
 
 @property(nonatomic, strong) Alarm *alarm;
 @property id<editAlarmDelegate> delegate;
@@ -43,6 +45,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *btnEmail;
 @property(weak, nonatomic) IBOutlet UIButton *btnActive;
 @property(weak, nonatomic) IBOutlet UIButton *btnPushNotification;
+@property(weak, nonatomic) IBOutlet UIButton *btnSlack;
 @property(weak, nonatomic) IBOutlet UITextField *txtFieldHttpCode;
 @property(weak, nonatomic) IBOutlet UITextField *txtFieldUrl;
 @property(weak, nonatomic) IBOutlet UITextField *txtFieldInterval;

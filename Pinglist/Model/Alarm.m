@@ -21,6 +21,7 @@
       [[dict safe_objectForKey:@"max_response_time"] intValue];
   self.interval = [[dict safe_objectForKey:@"interval"] intValue];
   self.isEmailAlert = [[dict safe_objectForKey:@"email_alerts"] boolValue];
+  self.isSlackAlert = [[dict safe_objectForKey:@"slack_alerts"] boolValue];
   self.isPushNotification =
       [[dict safe_objectForKey:@"push_notification_alerts"] boolValue];
   self.isActive = [[dict safe_objectForKey:@"active"] boolValue];

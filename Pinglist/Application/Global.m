@@ -170,6 +170,9 @@
   [defaults synchronize];
 
   [navigationController popToRootViewControllerAnimated:YES];
+
+  [SVProgressHUD showErrorWithStatus:@"Please log in again"
+                            maskType:SVProgressHUDMaskTypeClear];
 }
 
 @end

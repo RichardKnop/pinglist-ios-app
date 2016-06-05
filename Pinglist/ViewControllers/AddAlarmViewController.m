@@ -62,32 +62,32 @@
 
 - (IBAction)onCreate:(id)sender {
   if (![Global validateInteger:self.txtFieldInterval.text]) {
-    [Global showAlert:@"Please enter the Interval value" sender:self];
+    [Global showAlert:@"Please enter an interval" sender:self];
     return;
   }
 
   if (![Global validateInteger:self.txtFieldMaxResponseTime.text]) {
-    [Global showAlert:@"Please enter the Max Response Time" sender:self];
+    [Global showAlert:@"Please enter a max response time" sender:self];
     return;
   }
 
   if (![Global validateInteger:self.txtFieldHttpCode.text]) {
-    [Global showAlert:@"Please enter the HTTP Code" sender:self];
+    [Global showAlert:@"Please enter an HTTP code" sender:self];
     return;
   }
 
   if (self.txtFieldUrl.text.length == 0) {
-    [Global showAlert:@"Please enter the URL" sender:self];
+    [Global showAlert:@"Please enter a URL" sender:self];
     return;
   }
 
   if ([locationName isEqualToString:@"Location"]) {
-    [Global showAlert:@"Please select the location" sender:self];
+    [Global showAlert:@"Please select a location" sender:self];
     return;
   }
 
   if (![Global validateUrl:self.txtFieldUrl.text]) {
-    [Global showAlert:@"Please enter the valid URL" sender:self];
+    [Global showAlert:@"Please enter a valid URL" sender:self];
     return;
   }
 
@@ -107,6 +107,7 @@
     @"interval" : [NSNumber numberWithInt:interval],
     @"email_alerts" : [NSNumber numberWithBool:isEmail],
     @"push_notification_alerts" : [NSNumber numberWithBool:isPushNotification],
+    @"slack_alerts" : [NSNumber numberWithBool:isSlack],
     @"active" : [NSNumber numberWithBool:isActive],
     @"state" : @"insufficient data"
   };
@@ -160,10 +161,9 @@
     dropDownLocation.delegate = self;
     [dropDownLocation showInView:self.view animated:NO];
     [dropDownLocation SetBackGroundDropDown_R:255 G:255 B:255 alpha:1];
-  }
-
-  else
+  } else {
     [dropDownLocation fadeOut];
+  }
 
   isDropDown = !isDropDown;
 }
@@ -171,11 +171,10 @@
 - (IBAction)onEmail:(id)sender {
   if (isEmail) {
     [self.btnEmail setBackgroundImage:nil forState:UIControlStateNormal];
-  }
-
-  else
+  } else {
     [self.btnEmail setBackgroundImage:[UIImage imageNamed:@"check"]
                              forState:UIControlStateNormal];
+  }
 
   isEmail = !isEmail;
 }
@@ -183,11 +182,10 @@
 - (IBAction)onActive:(id)sender {
   if (isActive) {
     [self.btnActive setBackgroundImage:nil forState:UIControlStateNormal];
-  }
-
-  else
+  } else {
     [self.btnActive setBackgroundImage:[UIImage imageNamed:@"check"]
                               forState:UIControlStateNormal];
+  }
 
   isActive = !isActive;
 }
@@ -196,13 +194,23 @@
   if (isPushNotification) {
     [self.btnPushNotification setBackgroundImage:nil
                                         forState:UIControlStateNormal];
-  }
-
-  else
+  } else {
     [self.btnPushNotification setBackgroundImage:[UIImage imageNamed:@"check"]
                                         forState:UIControlStateNormal];
+  }
 
   isPushNotification = !isPushNotification;
+}
+
+- (IBAction)onSlack:(id)sender {
+  if (isSlack) {
+    [self.btnSlack setBackgroundImage:nil forState:UIControlStateNormal];
+  } else {
+    [self.btnSlack setBackgroundImage:[UIImage imageNamed:@"check"]
+                             forState:UIControlStateNormal];
+  }
+
+  isSlack = !isSlack;
 }
 
 #pragma mark - Dropdown Delegate
@@ -230,11 +238,10 @@
   if (IS_IPHONE_4) {
     self.view.frame = CGRectMake(0, -150, self.view.frame.size.width,
                                  self.view.frame.size.height);
-  }
-
-  else
+  } else {
     self.view.frame = CGRectMake(0, -50, self.view.frame.size.width,
                                  self.view.frame.size.height);
+  }
 }
 
 @end

@@ -295,6 +295,8 @@
     @"email_alerts" : [NSNumber numberWithBool:selectedAlarm.isEmailAlert],
     @"push_notification_alerts" :
         [NSNumber numberWithBool:selectedAlarm.isPushNotification],
+    @"slack_alerts" :
+        [NSNumber numberWithBool:selectedAlarm.isSlackAlert],
     @"active" : [NSNumber numberWithBool:!cell.isInactive],
     @"state" : selectedAlarm.state
   };
@@ -307,13 +309,13 @@
         [SVProgressHUD showSuccessWithStatus:@"Done"];
       }
       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSDictionary *respone = [NSJSONSerialization
+        NSDictionary *response = [NSJSONSerialization
             JSONObjectWithData:
                 (NSData *)error.userInfo
                     [AFNetworkingOperationFailingURLResponseDataErrorKey]
                        options:kNilOptions
                          error:&error];
-        [SVProgressHUD showErrorWithStatus:respone[@"error"]
+        [SVProgressHUD showErrorWithStatus:response[@"error"]
                                   maskType:SVProgressHUDMaskTypeClear];
       }];
 }

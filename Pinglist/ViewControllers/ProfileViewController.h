@@ -21,4 +21,7 @@
 @property(weak, nonatomic) IBOutlet UITextField *txtFieldEmail;
 @property(weak, nonatomic) IBOutlet UILabel *lblSubscription;
 
+@property(weak, nonatomic) NSString *slackIncomingWebhook;
+@property(weak, nonatomic) NSString *slackChannel;
+
 @end

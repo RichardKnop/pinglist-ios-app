@@ -44,6 +44,8 @@
         self.txtFieldFirstname.text = responseObject[@"first_name"];
         self.txtFieldEmail.text = responseObject[@"email"];
 
+        self.slackIncomingWebhook = responseObject[@"slack_incoming_webhook"];
+        self.slackChannel = responseObject[@"slack_channel"];
       }
       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSDictionary *respone = [NSJSONSerialization
@@ -66,9 +68,7 @@
 
         if (subscriptions.count == 0) {
           self.lblSubscription.text = @"Subscription: FREE";
-        }
-
-        else {
+        } else {
           NSDictionary *first = subscriptions[0];
           self.lblSubscription.text =
               [NSString stringWithFormat:@"Subscription: %@",
@@ -119,12 +119,12 @@
 
 - (IBAction)onUpdate:(id)sender {
   if ([self.txtFieldLastname.text isEqualToString:@""]) {
-    [Global showAlert:@"Pleaes enter the last name" sender:self];
+    [Global showAlert:@"Please enter a last name" sender:self];
     return;
   }
 
   if ([self.txtFieldFirstname.text isEqualToString:@""]) {
-    [Global showAlert:@"Pleaes enter the first name" sender:self];
+    [Global showAlert:@"Please enter a first name" sender:self];
     return;
   }
 
@@ -142,7 +142,9 @@
       stringWithFormat:@"%@/v1/accounts/users/%d", endpointURL, myUserId];
   NSDictionary *params = @{
     @"first_name" : self.txtFieldFirstname.text,
-    @"last_name" : self.txtFieldLastname.text
+    @"last_name" : self.txtFieldLastname.text,
+    @"slack_incoming_webhook" : self.slackIncomingWebhook,
+    @"slack_channel" : self.slackChannel
   };
 
   [SVProgressHUD showWithStatus:@"Saving" maskType:SVProgressHUDMaskTypeClear];

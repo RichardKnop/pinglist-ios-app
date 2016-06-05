@@ -77,7 +77,7 @@
   }
 
   if (self.txtFieldUrl.text.length == 0) {
-    [Global showAlert:@"Please enter an URL" sender:self];
+    [Global showAlert:@"Please enter a URL" sender:self];
     return;
   }
 

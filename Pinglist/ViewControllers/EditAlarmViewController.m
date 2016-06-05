@@ -83,11 +83,12 @@
     [self.btnSlack setBackgroundImage:nil forState:UIControlStateNormal];
   }
 
-  if (isActive)
+  if (isActive) {
     [self.btnActive setBackgroundImage:[UIImage imageNamed:@"check"]
                               forState:UIControlStateNormal];
-  else
+  } else {
     [self.btnActive setBackgroundImage:nil forState:UIControlStateNormal];
+  }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

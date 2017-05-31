@@ -7,3 +7,5 @@ iOS application for pinglist.
 See also:
 - [pinglist-api](https://github.com/RichardKnop/pinglist-api)
 - [pinglist-app](https://github.com/RichardKnop/pinglist-app)
+- [pinglist-aws-terraform](https://github.com/RichardKnop/pinglist-aws-terraform)
+- [pinglist-aws-ansible](https://github.com/RichardKnop/pinglist-aws-ansible)
